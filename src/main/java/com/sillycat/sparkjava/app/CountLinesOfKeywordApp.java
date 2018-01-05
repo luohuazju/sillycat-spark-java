@@ -28,11 +28,11 @@ public class CountLinesOfKeywordApp extends SparkBaseApp {
 		String logFile = "file:////opt/spark/README.md";
 		String keyword = "a";
 
-		logger.info("Prepare the resource from %s", logFile);
+		logger.info("Prepare the resource from " + logFile);
 		JavaRDD<String> rdd = this.generateRdd(sc, logFile);
-		logger.info("Executing the calculation based on keyword %s", keyword);
+		logger.info("Executing the calculation based on keyword " + keyword);
 		long result = processRows(rdd, keyword);
-		logger.info("Lines with keyword %s : %i", keyword, result);
+		logger.info("Lines with keyword " + keyword + ":" + result);
 		sc.stop();
 	}
 

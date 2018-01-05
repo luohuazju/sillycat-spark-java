@@ -10,7 +10,7 @@ public class SparkBaseApp implements Serializable {
 
 	private static final long serialVersionUID = 3926361971198654215L;
 
-	protected void executeTask(List<String> params) {
+	public void executeTask(List<String> params) {
 
 	}
 
@@ -20,6 +20,7 @@ public class SparkBaseApp implements Serializable {
 
 	protected SparkConf getSparkConf() {
 		SparkConf conf = new SparkConf();
+		conf.setAppName(this.getAppName());
 		conf.setIfMissing("spark.master", "local[4]");
 		conf.setSparkHome("/opt/spark");
 		conf.setJars(SparkContext.jarOfClass(this.getClass()).toList());
