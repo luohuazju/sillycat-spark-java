@@ -1,15 +1,20 @@
 package com.sillycat.sparkjava;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SparkJavaApp {
 
+	protected final static Logger logger = LoggerFactory.getLogger(SparkJavaApp.class);
+
 	public static void main(String[] args) {
-		int a = 0, b, c = 0, d;
-		b = a++;
-		d = ++c;
-		System.out.println("a = " + a);
-		System.out.println("b = " + b);
-		System.out.println("c = " + c);
-		System.out.println("d = " + d);
+		logger.info("enter the methods------");
+		if (args != null && args.length > 0) {
+			for (int i = 0; i < args.length; i++) {
+				logger.info("args:" + args[i]);
+			}
+		}
+		logger.info("-----------------------");
 	}
 
 }
