@@ -33,7 +33,7 @@ public class KafkaProducerApp {
 		try {
 			for (long index = time; index < time + sendMessageCount; index++) {
 				final ProducerRecord<Long, String> record = new ProducerRecord<>(TOPIC, index,
-						"Hello Sillycat " + index);
+						"Hello carl " + index);
 				RecordMetadata metadata = producer.send(record).get();
 				long elapsedTime = System.currentTimeMillis() - time;
 				System.out.printf("sent record(key=%s value=%s) " + "meta(partition=%d, offset=%d) time=%d\n",

@@ -1,6 +1,8 @@
 #Run the local#
 
->java -jar target/sillycat-spark-java-1.0-jar-with-dependencies.jar
+>java -jar target/sillycat-spark-java-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.CountLinesOfKeywordApp
+
+>java -jar target/sillycat-spark-java-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.WordCountStreamingApp
 
 #Run binary on local#
 

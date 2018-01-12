@@ -45,6 +45,9 @@ public class CountLinesOfKeywordApp extends SparkBaseApp {
 				if (s == null || s.trim().length() < 1) {
 					return false;
 				}
+				if(!s.contains(keyword)){
+					return false;
+				}
 				return true;
 			}
 		});

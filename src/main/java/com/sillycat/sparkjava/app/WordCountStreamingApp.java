@@ -1,16 +1,22 @@
 package com.sillycat.sparkjava.app;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.streaming.Duration;
-import org.apache.spark.streaming.api.java.JavaPairReceiverInputDStream;
+import org.apache.spark.streaming.api.java.JavaInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
-import org.apache.spark.streaming.kafka.KafkaUtils;
+import org.apache.spark.streaming.kafka010.ConsumerStrategies;
+import org.apache.spark.streaming.kafka010.KafkaUtils;
+import org.apache.spark.streaming.kafka010.LocationStrategies;
 
 import com.sillycat.sparkjava.base.SparkBaseApp;
 
@@ -26,12 +32,12 @@ public class WordCountStreamingApp extends SparkBaseApp {
 		SparkConf conf = this.getSparkConf();
 		// The time interval at which streaming data will be divided into
 		// batches
+		logger.info("Start to have the streaming");
 		JavaStreamingContext ssc = new JavaStreamingContext(conf, new Duration(30000));
 		ssc.checkpoint(this.getAppName());
-
 		logger.info("Prepare the resource for streaming");
-		generateRdd(ssc, "carl");
-
+		processStream(ssc, "carl");
+		logger.info("Streaming is working");
 		try {
 			ssc.start();
 			ssc.awaitTermination();
@@ -40,22 +46,28 @@ public class WordCountStreamingApp extends SparkBaseApp {
 		}
 	}
 
-	private JavaRDD<String> generateRdd(JavaStreamingContext ssc, String keyword) {
-		String zkQuorum = "localhost:2181";
-		String group = "1";
-		String topics = "top1,top2";
-		int numThreads = 2;
-		Map<String, Integer> topicmap = new HashMap<>();
-		String[] topicsArr = topics.split(",");
-		int n = topicsArr.length;
-		for (int i = 0; i < n; i++) {
-			topicmap.put(topicsArr[i], numThreads);
-		}
-		JavaPairReceiverInputDStream<String, String> lines = KafkaUtils.createStream(ssc, zkQuorum, group, topicmap);
-		return null;
+	private void processStream(JavaStreamingContext ssc, String keyword) {
+
+		Map<String, Object> kafkaParams = new HashMap<>();
+		kafkaParams.put("bootstrap.servers", "fr-stage-api:9092,fr-stage-consumer:9092,fr-perf1:9092");
+		kafkaParams.put("key.deserializer", StringDeserializer.class);
+		kafkaParams.put("value.deserializer", StringDeserializer.class);
+		kafkaParams.put("group.id", "WordCountStreamingApp");
+		kafkaParams.put("auto.offset.reset", "latest");
+		kafkaParams.put("enable.auto.commit", true);
+		Collection<String> topics = Arrays.asList("sillycat-topic");
+
+		logger.info("Init the Kafka Clients to fetch lines");
+		JavaInputDStream<ConsumerRecord<String, String>> dStream = KafkaUtils.createDirectStream(ssc,
+				LocationStrategies.PreferConsistent(),
+				ConsumerStrategies.<String, String>Subscribe(topics, kafkaParams));
+		dStream.foreachRDD(rdd -> {
+			processRows(rdd, keyword);
+		});
 	}
 
-	private long processRows(JavaRDD<String> rows, String keyword) {
+	private void processRows(JavaRDD<ConsumerRecord<String, String>> rdds, String keyword) {
+		JavaRDD<String> rows = rdds.map(record -> record.value());
 		JavaRDD<String> lines = rows.filter(new Function<String, Boolean>() {
 			private static final long serialVersionUID = 1L;
 
@@ -63,11 +75,14 @@ public class WordCountStreamingApp extends SparkBaseApp {
 				if (s == null || s.trim().length() < 1) {
 					return false;
 				}
+				if (!s.contains(keyword)) {
+					return false;
+				}
 				return true;
 			}
 		});
 		long count = lines.count();
-		return count;
+		logger.info("Kafka received " + count + " " + keyword);
 	}
 
 }
