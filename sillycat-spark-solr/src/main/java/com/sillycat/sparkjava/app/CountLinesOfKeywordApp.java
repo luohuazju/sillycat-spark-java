@@ -2,7 +2,6 @@ package com.sillycat.sparkjava.app;
 
 import java.util.List;
 
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
@@ -46,7 +45,7 @@ public class CountLinesOfKeywordApp extends SparkBaseApp {
 				if (s == null || s.trim().length() < 1) {
 					return false;
 				}
-				if(!s.contains(keyword)){
+				if (!s.contains(keyword)) {
 					return false;
 				}
 				return true;
