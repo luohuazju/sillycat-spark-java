@@ -34,10 +34,6 @@
 			<artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
 			<version>${spark.version}</version>
 		</dependency>
-		<!-- kafka -->
-		<!-- <dependency> <groupId>org.apache.kafka</groupId> <artifactId>kafka-clients</artifactId> 
-			<version>0.11.0.2</version> </dependency> -->
-		<!-- testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
