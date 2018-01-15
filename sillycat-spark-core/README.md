@@ -2,8 +2,6 @@
 
 >java -jar target/sillycat-spark-core-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.CountLinesOfKeywordApp
 
->java -jar target/sillycat-spark-core-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.SeniorJavaFeedApp
-
 #Run binary on local#
 
 >bin/spark-submit --class com.sillycat.sparkjava.SparkJavaApp /Users/carl/work/sillycat/sillycat-spark-java/target/sillycat-spark-java-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.CountLinesOfKeywordApp
