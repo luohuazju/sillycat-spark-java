@@ -28,6 +28,11 @@
 			<artifactId>spark-solr</artifactId>
 			<version>${spark.solr.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
 		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
