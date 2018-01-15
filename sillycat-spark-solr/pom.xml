@@ -12,7 +12,7 @@
 
 	<properties>
 		<spark.version>2.2.1</spark.version>
-		<spark.solr.version>3.3.4</spark.solr.version>
+		<spark.solr.version>3.4.0.1</spark.solr.version>
 	</properties>
 
 	<dependencies>
@@ -27,17 +27,6 @@
 			<groupId>com.lucidworks.spark</groupId>
 			<artifactId>spark-solr</artifactId>
 			<version>${spark.solr.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.4.6</version>
 		</dependency>
 		<!-- JUNIT -->
 		<dependency>
