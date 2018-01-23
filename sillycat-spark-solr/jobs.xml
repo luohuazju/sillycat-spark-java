@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<jobs>
+  <job>
+    <id>4843643273</id>
+    <title><![CDATA[Java API Developer]]></title>
+    <price>17</price>
+  </job>
+  <job>
+    <id>4843524553</id>
+    <title><![CDATA[Java Developer Professional]]></title>
+    <price>17</price>
+  </job>
+  <job>
+    <id>4843484757</id>
+    <title><![CDATA[Java Developer - Full Stack]]></title>
+    <price>17</price>
+  </job>
+</jobs>
