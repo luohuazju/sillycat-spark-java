@@ -33,6 +33,8 @@ public class SparkJavaApp
     Configuration config = new Configuration();
     config.addResource( new Path( "/opt/hadoop/etc/hadoop/core-site.xml" ) );
     config.addResource( new Path( "/opt/hadoop/etc/hadoop/yarn-site.xml" ) );
+    config.set( "fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName() );
+    config.set( "fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName() );
 
     System.out.println( config.get( "yarn.resourcemanager.address" ) );
 
