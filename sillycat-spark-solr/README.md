@@ -21,3 +21,5 @@
 >bin/spark-submit --class com.sillycat.sparkjava.SparkJavaApp --master yarn-client /home/ec2-user/users/carl/sillycat-spark-java/sillycat-spark-solr/target/sillycat-spark-solr-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.SeniorJavaFeedApp
 
 >bin/spark-submit --class com.sillycat.sparkjava.SparkJavaApp --master yarn-client /home/ec2-user/users/carl/sillycat-spark-java/sillycat-spark-solr/target/sillycat-spark-solr-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.SeniorJavaFeedToXMLApp
+
+>java -Dmaster=yarn-client -jar target/sillycat-spark-solr-1.0-jar-with-dependencies.jar com.sillycat.sparkjava.app.SeniorJavaFeedToXMLApp

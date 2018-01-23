@@ -33,12 +33,6 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.3</version>
 		</dependency>
-		<!-- spark XML -->
-		<dependency>
-			<groupId>com.databricks</groupId>
-			<artifactId>spark-xml_2.11</artifactId>
-			<version>0.4.1</version>
-		</dependency>
 		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
