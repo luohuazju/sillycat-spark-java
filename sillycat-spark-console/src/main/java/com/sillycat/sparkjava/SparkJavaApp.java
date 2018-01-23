@@ -30,7 +30,7 @@ public class SparkJavaApp
     sparkConf.set( "spark.yarn.tags", applicationTag );
     sparkConf.set( "spark.master", "yarn-client" );
     sparkConf.set( "spark.submit.deployMode", "cluster" );
-    sparkConf.set( "spark.yarn.jars", "/opt/spark/jars/*.jar" );
+    //sparkConf.set( "spark.yarn.jars", "/opt/spark/jars/*.jar" );
 
     Configuration config = new Configuration();
     config.addResource( new Path( "/opt/hadoop/etc/hadoop/core-site.xml" ) );
