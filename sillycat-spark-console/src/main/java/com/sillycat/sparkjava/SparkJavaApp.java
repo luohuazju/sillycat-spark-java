@@ -27,6 +27,7 @@ public class SparkJavaApp
     String applicationTag = "TestApp-" + new Date().getTime();
     sparkConf.set( "spark.yarn.submit.waitAppCompletion", "false" );
     sparkConf.set( "spark.yarn.tags", applicationTag );
+    sparkConf.set( "spark.master", "yarn-client" );
     sparkConf.set( "spark.submit.deployMode", "cluster" );
     sparkConf.set( "spark.yarn.jars", "/opt/spark/jars/*.jar" );
 
