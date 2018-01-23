@@ -37,7 +37,7 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
     String zkHost =
       "zookeeper1.us-east-1.elasticbeanstalk.com,zookeeper2.us-east-1.elasticbeanstalk.com,zookeeper3.us-east-1.elasticbeanstalk.com/solr/allJobs";
     String collection = "allJobs";
-    String solrQuery = "expired: false AND title: Java* AND source_id: 4675";
+    String solrQuery = "expired: false AND title: Java* AND source_id: 4675"; //82  18k jobs java
     //String solrQuery = "expired: false AND title: Java*";
     String keyword = "Developer";
 
@@ -46,7 +46,7 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
     logger.info( "System get sources job count:" + rdd.count() );
 
     logger.info( "Executing the calculation based on keyword " + keyword );
-    JavaRDD<SolrDocument> solrDocs = processRowFilters( rdd, keyword );
+    JavaRDD<SolrDocument> solrDocs = processRowFilters( rdd, keyword ); //java code filter java developer 10k
     JavaRDD<Job> jobs = solrDocs.map( new Function<SolrDocument, Job>()
     {
 
@@ -66,7 +66,7 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
 
     Dataset<Row> jobDF = sqlSession.createDataFrame( jobs, Job.class );
     jobDF.createOrReplaceTempView( "job" );
-    Dataset<Row> jobHighDF = sqlSession.sql( "SELECT id, title, price FROM job WHERE price > 16 " );
+    Dataset<Row> jobHighDF = sqlSession.sql( "SELECT id, title, price FROM job WHERE price > 16 " ); // price > 16 1k
 
     logger.info( "Find some jobs for you:" + jobHighDF.count() );
     logger.info( "Job Content is:" + jobHighDF.collectAsList().get( 0 ) );
