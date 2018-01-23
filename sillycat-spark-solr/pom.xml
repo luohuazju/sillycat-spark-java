@@ -28,11 +28,13 @@
 			<artifactId>spark-solr</artifactId>
 			<version>${spark.solr.version}</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-yarn_2.11</artifactId>
 			<version>2.2.1</version>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
