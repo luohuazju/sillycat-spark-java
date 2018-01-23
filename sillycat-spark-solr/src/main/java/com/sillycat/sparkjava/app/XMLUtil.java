@@ -20,7 +20,8 @@ public class XMLUtil
   {
 
     XMLStreamWriter writer = null;
-    try ( OutputStream os = Files.newOutputStream( Paths.get( filePath ), StandardOpenOption.SYNC ) )
+    try ( OutputStream os =
+      Files.newOutputStream( Paths.get( filePath ), StandardOpenOption.CREATE ) )
     {
       XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
       writer = new IndentingXMLStreamWriter(
