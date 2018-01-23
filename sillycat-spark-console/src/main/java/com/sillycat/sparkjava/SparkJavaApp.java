@@ -25,6 +25,7 @@ public class SparkJavaApp
     };
     SparkConf sparkConf = new SparkConf();
     String applicationTag = "TestApp-" + new Date().getTime();
+    sparkConf.setAppName( "SeniorJavaFeedToXMLApp" );
     sparkConf.set( "spark.yarn.submit.waitAppCompletion", "false" );
     sparkConf.set( "spark.yarn.tags", applicationTag );
     sparkConf.set( "spark.master", "yarn-client" );
