@@ -42,6 +42,7 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
 
     logger.info( "Prepare the resource from " + solrQuery );
     JavaRDD<SolrDocument> rdd = this.generateRdd( sc, zkHost, collection, solrQuery );
+    logger.info( "System get sources job count:" + rdd.count() );
 
     logger.info( "Executing the calculation based on keyword " + keyword );
     JavaRDD<SolrDocument> solrDocs = processRowFilters( rdd, keyword );
