@@ -37,8 +37,8 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
     String zkHost =
       "zookeeper1.us-east-1.elasticbeanstalk.com,zookeeper2.us-east-1.elasticbeanstalk.com,zookeeper3.us-east-1.elasticbeanstalk.com/solr/allJobs";
     String collection = "allJobs";
-    String solrQuery = "expired: false AND title: Java* AND source_id: 4675"; //82  18k jobs java
-    //String solrQuery = "expired: false AND title: Java*";
+    //String solrQuery = "expired: false AND title: Java* AND source_id: 4675"; //82  18k jobs java
+    String solrQuery = "expired: false AND title: Java*";
     String keyword = "Developer";
 
     logger.info( "Prepare the resource from " + solrQuery );
