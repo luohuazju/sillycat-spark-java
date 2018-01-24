@@ -36,7 +36,7 @@ public class SparkBaseApp implements Serializable
     //}
     //else
     //{
-    conf.set( "spark.master", "local[4]" );
+    // conf.set( "spark.master", "local[4]" );
     //}
     conf.setSparkHome( "/opt/spark" );
     conf.setJars( SparkContext.jarOfClass( this.getClass() ).toList() );
