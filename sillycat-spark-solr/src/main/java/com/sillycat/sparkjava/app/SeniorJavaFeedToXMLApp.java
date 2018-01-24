@@ -76,7 +76,7 @@ public class SeniorJavaFeedToXMLApp extends SparkBaseApp
     logger.info( "Persist some jobs to XML:" + jobsHigh.size() );
     logger.info( "Persist some jobs to XML:" + jobsHigh.get( 0 ) );
 
-    XMLUtil.xmlStreamWriter( "jobs.xml", jobsHigh );
+    XMLUtil.xmlStreamWriter( "/tmp/jobs.xml", jobsHigh );
 
     sqlSession.close();
     sc.stop();
