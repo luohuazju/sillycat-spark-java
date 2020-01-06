@@ -29,6 +29,7 @@ public class SparkBaseApp implements Serializable {
 		conf.setSparkHome("/opt/spark");
 		conf.setJars(SparkContext.jarOfClass(this.getClass()).toList());
 		conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer");
+		conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
 		return conf;
 	}
 
