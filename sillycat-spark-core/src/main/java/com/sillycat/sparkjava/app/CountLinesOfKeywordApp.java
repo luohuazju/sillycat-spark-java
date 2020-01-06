@@ -21,7 +21,8 @@ public class CountLinesOfKeywordApp extends SparkBaseApp {
 		SparkConf conf = this.getSparkConf();
 		SparkContext sc = new SparkContext(conf);
 
-		String logFile = "file:////opt/spark/README.md";
+		//String logFile = "file:////opt/spark/README.md";
+		String logFile = "hdfs://lapro-nyc3-003:9000/demo/README.md";
 		String keyword = "a";
 
 		logger.info("Prepare the resource from " + logFile);
